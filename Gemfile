@@ -69,4 +69,10 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails'
+  gem 'rswag-specs'
 end
+
+gem "prettier"
+gem 'rswag-api'
+gem 'rswag-ui'
