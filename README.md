@@ -83,7 +83,7 @@ Routes for Rswag::Api::Engine:
 $ curl -X GET http://localhost:13000/api/v1/todos
 ```
 ```json 
-{"status":"SUCCESS","message":"Loaded todos","data":[{"id":2,"name":"掃除","done":false,"created_at":"2022-07-14T05:20:52.900Z","updated_at":"2022-07-14T05:20:52.900Z"},{"id":1,"name":"買い物","done":false,"created_at":"2022-07-14T02:55:29.261Z","updated_at":"2022-07-14T02:55:29.261Z"}]}
+[{"id":2,"name":"掃除","done":false,"created_at":"2022-07-14T05:20:52.900Z","updated_at":"2022-07-14T05:20:52.900Z"},{"id":1,"name":"買い物","done":false,"created_at":"2022-07-14T02:55:29.261Z","updated_at":"2022-07-14T02:55:29.261Z"}]
 ```
 
 ## show
@@ -91,7 +91,7 @@ $ curl -X GET http://localhost:13000/api/v1/todos
 $ curl -X GET http://localhost:13000/api/v1/todos/1
 ```
 ```json 
-{"status":"SUCCESS","message":"Loaded the todo","data":{"id":1,"name":"買い物","done":false,"created_at":"2022-07-14T02:55:29.261Z","updated_at":"2022-07-14T02:55:29.261Z"}}
+{"id":1,"name":"買い物","done":false,"created_at":"2022-07-14T02:55:29.261Z","updated_at":"2022-07-14T02:55:29.261Z"}
 ```
 
 ## create
@@ -99,7 +99,7 @@ $ curl -X GET http://localhost:13000/api/v1/todos/1
 $ curl -X POST -H "Content-Type: application/json" -d '{"name":"開発", "done":false}' http://localhost:13000/api/v1/todos
 ```
 ```json 
-{"status":"SUCCESS","data":{"id":3,"name":"開発","done":false,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:25:15.593Z"}}
+{"id":3,"name":"開発","done":false,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:25:15.593Z"}
 ```
 
 ## update
@@ -107,7 +107,7 @@ $ curl -X POST -H "Content-Type: application/json" -d '{"name":"開発", "done":
 $ curl -X PUT -H "Content-Type: application/json" -d '{"name":"開発", "done":true}' http://localhost:13000/api/v1/todos/3
 ```
 ```json
-{"status":"SUCCESS","message":"Updated the todo","data":{"name":"開発","done":true,"id":3,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:26:17.170Z"}}y
+{"name":"開発","done":true,"id":3,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:26:17.170Z"}
 ```
 
 ## destroy
@@ -115,7 +115,7 @@ $ curl -X PUT -H "Content-Type: application/json" -d '{"name":"開発", "done":t
 $ curl -X DELETE -H "Content-Type: application/json" -d '{"name":"開発", "done":true}' http://localhost:13000/api/v1/todos/3
 ```
 ```json
-{"status":"SUCCESS","message":"Deleted the todo","data":{"id":3,"name":"開発","done":true,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:26:17.170Z"}}
+{"id":3,"name":"開発","done":true,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:26:17.170Z"}
 ```
 
 ## RSpec 実行
