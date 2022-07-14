@@ -16,7 +16,7 @@ RSpec.describe 'Todos API', type: :request do
         required: [ 'name', 'done' ]
       }
 
-      response '201', 'Todo 作成成功' do
+      response 201, 'Todo 作成成功' do
         let(:todo) { { name: '買い物', done: false } }
         run_test!
       end
