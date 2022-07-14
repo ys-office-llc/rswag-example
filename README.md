@@ -118,6 +118,13 @@ $ curl -X DELETE -H "Content-Type: application/json" -d '{"name":"開発", "done
 {"status":"SUCCESS","message":"Deleted the todo","data":{"id":3,"name":"開発","done":true,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:26:17.170Z"}}
 ```
 
+## RSpec 実行
+
+## Swagger 仕様自動作成
+```ruby
+$ RAILS_ENV=test rake rswag:specs:swaggerize
+```
+
 # 参考資料
 - [Railsで超簡単API](https://qiita.com/k-penguin-sato/items/adba7a1a1ecc3582a9c9)
 - [rswagを使ったテストファーストなAPI開発のフローを確認する](https://qiita.com/nakazawaken1/items/1cf12756a9e00f1a8fc4)
