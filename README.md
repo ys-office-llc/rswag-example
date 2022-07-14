@@ -27,7 +27,6 @@ RAILS_ENV=test rake rswag:specs:swaggerize
 
 # ルーティングテーブル（抜粋）
 ```ruby
-$ bundle exec rails routes
                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
                                 rswag_ui        /api-docs                                                                                         Rswag::Ui::Engine
                                rswag_api        /api-docs                                                                                         Rswag::Api::Engine
@@ -45,7 +44,7 @@ $ bundle exec rails routes
 ## index
 
 ```bash
-$ curl -X GET http://localhost:13000/api/v1/todos
+curl -X GET http://localhost:13000/api/v1/todos
 ```
 ```json 
 [{"id":2,"name":"掃除","done":false,"created_at":"2022-07-14T05:20:52.900Z","updated_at":"2022-07-14T05:20:52.900Z"},{"id":1,"name":"買い物","done":false,"created_at":"2022-07-14T02:55:29.261Z","updated_at":"2022-07-14T02:55:29.261Z"}]
@@ -53,7 +52,7 @@ $ curl -X GET http://localhost:13000/api/v1/todos
 
 ## show
 ```bash
-$ curl -X GET http://localhost:13000/api/v1/todos/1
+curl -X GET http://localhost:13000/api/v1/todos/1
 ```
 ```json 
 {"id":1,"name":"買い物","done":false,"created_at":"2022-07-14T02:55:29.261Z","updated_at":"2022-07-14T02:55:29.261Z"}
@@ -61,7 +60,7 @@ $ curl -X GET http://localhost:13000/api/v1/todos/1
 
 ## create
 ```bash
-$ curl -X POST -H "Content-Type: application/json" -d '{"name":"開発", "done":false}' http://localhost:13000/api/v1/todos
+curl -X POST -H "Content-Type: application/json" -d '{"name":"開発", "done":false}' http://localhost:13000/api/v1/todos
 ```
 ```json 
 {"id":3,"name":"開発","done":false,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:25:15.593Z"}
@@ -69,23 +68,22 @@ $ curl -X POST -H "Content-Type: application/json" -d '{"name":"開発", "done":
 
 ## update
 ```bash
-$ curl -X PUT -H "Content-Type: application/json" -d '{"name":"開発", "done":true}' http://localhost:13000/api/v1/todos/3
+curl -X PUT -H "Content-Type: application/json" -d '{"name":"開発", "done":true}' http://localhost:13000/api/v1/todos/2
 ```
 ```json
-{"name":"開発","done":true,"id":3,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:26:17.170Z"}
+{"name":"開発","done":true,"id":2,"created_at":"2022-07-14T05:20:52.900Z","updated_at":"2022-07-14T12:15:25.736Z"}
 ```
 
 ## destroy
 ```bash
-$ curl -X DELETE -H "Content-Type: application/json" -d '{"name":"開発", "done":true}' http://localhost:13000/api/v1/todos/3
+curl -X DELETE -H "Content-Type: application/json" http://localhost:13000/api/v1/todos/1
 ```
 ```json
-{"id":3,"name":"開発","done":true,"created_at":"2022-07-14T05:25:15.593Z","updated_at":"2022-07-14T05:26:17.170Z"}
 ```
 
 ## RSpec 実行
 ```ruby
-$ bundle exec rspec spec/requests/api/v1/todos_spec.rb 
+bundle exec rspec spec/requests/api/v1/todos_spec.rb 
 ...
 
 Finished in 0.03788 seconds (files took 0.59304 seconds to load)
@@ -94,7 +92,7 @@ Finished in 0.03788 seconds (files took 0.59304 seconds to load)
 
 ## Swagger 仕様自動作成
 ```ruby
-$ RAILS_ENV=test rake rswag:specs:swaggerize
+RAILS_ENV=test rake rswag:specs:swaggerize
 ```
 
 # 参考資料
