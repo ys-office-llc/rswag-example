@@ -6,13 +6,15 @@ info:
 paths:
   "/api/v1/todos":
     post:
-      summary: Todo リストを作成する
+      summary: Creates a todo
       tags:
       - Todos
       parameters: []
       responses:
         '201':
-          description: Todo 作成成功
+          description: OK
+        '422':
+          description: Unprocessable Entity
       requestBody:
         content:
           application/json:
@@ -27,12 +29,12 @@ paths:
               - name
               - done
     get:
-      summary: Todo 一覧を取得する
+      summary: Get a todo list
       tags:
       - Todos
       responses:
         '200':
-          description: Todo 一覧
+          description: OK
           content:
             application/json:
               schema:
