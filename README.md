@@ -119,6 +119,13 @@ $ curl -X DELETE -H "Content-Type: application/json" -d '{"name":"開発", "done
 ```
 
 ## RSpec 実行
+```ruby
+$ bundle exec rspec spec/requests/api/v1/todos_spec.rb 
+...
+
+Finished in 0.03788 seconds (files took 0.59304 seconds to load)
+3 examples, 0 failures
+```
 
 ## Swagger 仕様自動作成
 ```ruby
