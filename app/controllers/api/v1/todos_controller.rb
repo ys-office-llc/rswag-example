@@ -2,7 +2,7 @@ class Api::V1::TodosController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_todo, only: [:show, :update, :destroy]
 
-   # GET /api/v1/todos
+  # GET /api/v1/todos
   def index
     @todos = Todo.all
     render json: @todos
@@ -10,7 +10,7 @@ class Api::V1::TodosController < ApplicationController
 
   # GET /api/v1/todos/1
   def show
-    render @todos
+    render json: @todo
   end
 
   # POST /api/v1/todos
