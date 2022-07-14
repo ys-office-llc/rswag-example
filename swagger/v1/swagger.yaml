@@ -5,11 +5,34 @@ info:
   version: v1
 paths:
   "/api/v1/todos":
+    post:
+      summary: Todo リストを作成する
+      tags:
+      - Todos
+      parameters: []
+      responses:
+        '201':
+          description: Todo 作成成功
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                done:
+                  type: boolean
+              required:
+              - name
+              - done
     get:
-      summary: get todo list
+      summary: Todo 一覧を取得する
+      tags:
+      - Todos
       responses:
         '200':
-          description: todo list
+          description: Todo 一覧
           content:
             application/json:
               schema:
