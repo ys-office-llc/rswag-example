@@ -16,7 +16,7 @@ RSpec.describe 'Todos API', type: :request do
         required: [ 'name', 'done' ]
       }
 
-      response 201, 'OK' do
+      response 201, :success do
         let(:todo) { { name: '買い物', done: false } }
         run_test!
       end
@@ -31,7 +31,7 @@ RSpec.describe 'Todos API', type: :request do
       tags 'Todos'
       consumes 'application/json'
       produces 'application/json'
-      response 200, 'OK' do
+      response 200, :success do
         schema type: :array, items: {
           type: :object,
           properties: {
@@ -50,9 +50,9 @@ RSpec.describe 'Todos API', type: :request do
     get 'Retrieves a todo' do
       tags 'Todos'
       produces 'application/json'
-      parameter name: :id, in: :path, type: :boolean
+      parameter name: :id, in: :path, type: :integer
 
-      response '200', 'OK' do
+      response '200', :success do
         schema type: :object,
           properties: {
             id: { type: :integer },
@@ -65,7 +65,7 @@ RSpec.describe 'Todos API', type: :request do
         run_test!
       end
 
-      response '404', 'not found' do
+      response '404', 'Not Found' do
         let(:id) { 'invalid' }
         run_test!
       end
@@ -74,6 +74,33 @@ RSpec.describe 'Todos API', type: :request do
       #   let(:'Accept') { 'application/foo' }
       #   run_test!
       # end
+    end
+
+    put 'Update todo by id' do
+      tags 'Todos'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :todo, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          done: { type: :boolean }
+        },
+        required: [:name, :done]
+      }
+
+      response '200', :success do
+        let!(:id) { Todo.create(name: '掃除', done: false).id }
+        let(:todo) { { name: '掃除', done: true } }
+        run_test!
+      end
+
+      response '404', :not_found do
+        let!(:id) { 99999999 }
+        let(:todo) { { name: '掃除', done: true } }
+        run_test!
+      end
     end
   end
 end

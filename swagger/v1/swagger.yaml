@@ -3,51 +3,6 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths:
-  "/api/v1/todos":
-    post:
-      summary: Creates a todo
-      tags:
-      - Todos
-      parameters: []
-      responses:
-        '201':
-          description: OK
-        '422':
-          description: Unprocessable Entity
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                done:
-                  type: boolean
-              required:
-              - name
-              - done
-    get:
-      summary: Get a todo list
-      tags:
-      - Todos
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    done:
-                      type: boolean
-                  required:
-                  - name
-                  - done
+paths: {}
 servers:
 - url: http://localhost:3000
