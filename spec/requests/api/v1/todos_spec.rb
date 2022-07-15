@@ -44,4 +44,36 @@ RSpec.describe 'Todos API', type: :request do
       end
     end
   end
+
+  path '/api/v1/todos/{id}' do
+
+    get 'Retrieves a todo' do
+      tags 'Todos'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :boolean
+
+      response '200', 'OK' do
+        schema type: :object,
+          properties: {
+            id: { type: :integer },
+            name: { type: :string },
+            done: { type: :boolean }
+          },
+          required: [ 'id', 'name', 'done' ]
+
+        let(:id) { Todo.create(name: 'トイレ掃除', done: false).id }
+        run_test!
+      end
+
+      response '404', 'not found' do
+        let(:id) { 'invalid' }
+        run_test!
+      end
+
+      # response '406', 'unsupported accept header' do
+      #   let(:'Accept') { 'application/foo' }
+      #   run_test!
+      # end
+    end
+  end
 end
