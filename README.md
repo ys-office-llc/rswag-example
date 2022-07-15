@@ -1,4 +1,4 @@
-# rswag-example
+# rswag での CRUD アプリケーション例
 
 ## Gemfile 抜粋
 
@@ -84,6 +84,8 @@ curl -X DELETE -H "Content-Type: application/json" http://localhost:13000/api/v1
 ## RSpec 実行
 ```ruby
 bundle exec rspec spec/requests/api/v1/todos_spec.rb 
+```
+```text
 ...
 
 Finished in 0.03788 seconds (files took 0.59304 seconds to load)
