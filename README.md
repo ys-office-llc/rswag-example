@@ -104,3 +104,4 @@ RAILS_ENV=test rake rswag:specs:swaggerize
 - [新規Railsプロジェクトの作成手順まとめ](https://qiita.com/yuitnnn/items/b45bba658d86eabdbb26)
 - [Documenting Ruby on Rails APIs Using rswag Gem](https://betterprogramming.pub/documenting-ruby-on-rails-apis-using-rswag-gem-48c92e11ea30)
 - https://github.com/ruslantolstov/rswag-example/blob/master/spec/requests/api/backoffice/articles_spec.rb
+- [Using query parameters + body parameters in a single request? #142](https://github.com/rswag/rswag/issues/142)
