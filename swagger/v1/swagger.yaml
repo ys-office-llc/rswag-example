@@ -108,5 +108,20 @@ paths:
               required:
               - name
               - done
+    delete:
+      summary: Delete todo by id
+      tags:
+      - Todos
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: no_content
+        '404':
+          description: not_found
 servers:
 - url: http://localhost:3000
