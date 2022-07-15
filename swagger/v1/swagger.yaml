@@ -3,6 +3,110 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/api/v1/todos":
+    post:
+      summary: Creates a todo
+      tags:
+      - Todos
+      parameters: []
+      responses:
+        '201':
+          description: success
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                done:
+                  type: boolean
+              required:
+              - name
+              - done
+    get:
+      summary: Get a todo list
+      tags:
+      - Todos
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    done:
+                      type: boolean
+                  required:
+                  - name
+                  - done
+  "/api/v1/todos/{id}":
+    get:
+      summary: Retrieves a todo
+      tags:
+      - Todos
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  done:
+                    type: boolean
+                required:
+                - id
+                - name
+                - done
+        '404':
+          description: Not Found
+    put:
+      summary: Update todo by id
+      tags:
+      - Todos
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: success
+        '404':
+          description: not_found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                done:
+                  type: boolean
+              required:
+              - name
+              - done
 servers:
 - url: http://localhost:3000
