@@ -96,6 +96,7 @@ RAILS_ENV=test rake rswag:specs:swaggerize
 ```
 
 # 参考資料
+- [【Rails】APIモードで使えるHTTPステータスコードのシンボルまとめ](https://qiita.com/terufumi1122/items/997e24dde87f807e3944)
 - [Railsで超簡単API](https://qiita.com/k-penguin-sato/items/adba7a1a1ecc3582a9c9)
 - [rswagを使ったテストファーストなAPI開発のフローを確認する](https://qiita.com/nakazawaken1/items/1cf12756a9e00f1a8fc4)
 - [とにかくRails6でrswagを動かす](https://qiita.com/cheekykorkind/items/6c28832fe23938a92b50)
