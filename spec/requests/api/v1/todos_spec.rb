@@ -66,7 +66,7 @@ RSpec.describe 'Todos API', type: :request do
       end
 
       response '404', 'Not Found' do
-        let(:id) { 'invalid' }
+        let(:id) { 0 }
         run_test!
       end
 
@@ -97,8 +97,25 @@ RSpec.describe 'Todos API', type: :request do
       end
 
       response '404', :not_found do
-        let!(:id) { 99999999 }
+        let!(:id) { 0 }
         let(:todo) { { name: '掃除', done: true } }
+        run_test!
+      end
+    end
+
+    delete 'Delete todo by id' do
+      tags 'Todos'
+      # consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :integer
+
+      response '204', :no_content do
+        let!(:id) { Todo.create(name: '掃除', done: false).id }
+        run_test!
+      end
+
+      response '404', :not_found do
+        let!(:id) { 0 }
         run_test!
       end
     end
