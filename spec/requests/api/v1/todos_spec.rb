@@ -7,14 +7,7 @@ RSpec.describe 'Todos API', type: :request do
     post 'Creates a todo' do
       tags 'Todos'
       consumes 'application/json'
-      parameter name: :todo, in: :body, schema: {
-        type: :object,
-        properties: {
-          name: { type: :string },
-          done: { type: :boolean }
-        },
-        required: [ 'name', 'done' ]
-      }
+      parameter name: :todo, in: :body, schema: { '$ref' => '#/components/schemas/todo' }
 
       response 201, :success do
         let(:todo) { { name: '買い物', done: false } }

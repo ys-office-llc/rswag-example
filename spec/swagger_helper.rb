@@ -22,6 +22,37 @@ RSpec.configure do |config|
         version: 'v1'
       },
       paths: {},
+      components: {
+        schemas: {
+          errors_object: {
+            type: 'object',
+            properties: {
+              errors: { '$ref' => '#/components/schemas/errors_map' }
+            }
+          },
+          errors_map: {
+            type: 'object',
+            additionalProperties: {
+              type: 'array',
+              items: { type: 'string' }
+            }
+          },
+          todos: {
+            type: 'array',
+            items: {
+              '$ref' => '#/components/schemas/todo'
+            }
+          },
+          todo: {
+            type: :object,
+            properties: {
+              namea: { type: :string },
+              done: { type: :boolean }
+            },
+            required: %w[name done]
+          }
+        }
+      },
       servers: [
         {
           url: 'http://localhost:3000'
