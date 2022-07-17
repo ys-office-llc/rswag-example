@@ -14,33 +14,19 @@ paths:
         '201':
           description: success
         '422':
-          description: Unprocessable Entity
+          description: unprocessable_entity
       requestBody:
         content:
           application/json:
             schema:
               "$ref": "#/components/schemas/todo"
     get:
-      summary: Get a todo list
+      summary: Retrieves a todo list
       tags:
       - Todos
       responses:
         '200':
           description: success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    done:
-                      type: boolean
-                  required:
-                  - name
-                  - done
   "/api/v1/todos/{id}":
     get:
       summary: Retrieves a todo
@@ -58,20 +44,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  done:
-                    type: boolean
-                required:
-                - id
-                - name
-                - done
+                "$ref": "#/components/schemas/todo"
         '404':
-          description: Not Found
+          description: not_found
     put:
       summary: Update todo by id
       tags:
@@ -91,15 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                done:
-                  type: boolean
-              required:
-              - name
-              - done
+              "$ref": "#/components/schemas/todo"
     delete:
       summary: Delete todo by id
       tags:
@@ -128,19 +95,19 @@ components:
         type: array
         items:
           type: string
-    todos:
-      type: array
-      items:
-        "$ref": "#/components/schemas/todo"
     todo:
       type: object
       properties:
-        namea:
+        name:
           type: string
         done:
           type: boolean
       required:
       - name
       - done
+    todos:
+      type: array
+      items:
+        "$ref": "#/components/schemas/todo"
 servers:
 - url: http://localhost:3000
