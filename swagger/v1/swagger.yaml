@@ -1,9 +1,42 @@
 ---
 swagger: '2.0'
 info:
-  title: API V1
+  title: Todo API V1
   version: v1
+consumes:
+- application/json
+produces:
+- application/json
 paths:
+  "/viron":
+    get:
+      summary: エンドポイント全体情報取得
+      operationId: viron#index
+      responses:
+        '200':
+          description: success
+          schema:
+            "$ref": "#/definitions/Viron"
+  "/viron_authtype":
+    get:
+      summary: 認証方式一覧
+      operationId: viron_authtype#index
+      responses:
+        '200':
+          description: success
+          schema:
+            "$ref": "#/definitions/VironAuthtype"
+  "/swagger.json":
+    get:
+      summary: swagger.json 取得
+      operationId: swagger#index
+      responses:
+        '200':
+          description: success
+          schema:
+            type: object
+        '500':
+          description: Internal Server Error
   "/api/v1/todos":
     post:
       summary: Creates a todo
@@ -88,6 +121,45 @@ paths:
         '404':
           description: not_found
 definitions:
+  Viron:
+    required:
+    - name
+    - color
+    - thumbnail
+    - tags
+    - pages
+    additionalProperties: false
+    properties:
+      name:
+        type: string
+      color:
+        type: string
+      thumbnail:
+        type: string
+      tags:
+        type: string
+      pages:
+        type: string
+  VironAuthtype:
+    type: array
+    items:
+      "$ref": "#/definitions/AuthType"
+  AuthType:
+    required:
+    - type
+    - url
+    - method
+    - provider
+    additionalProperties: false
+    properties:
+      type:
+        type: string
+      url:
+        type: string
+      method:
+        type: string
+      provider:
+        type: string
   errors_object:
     type: object
     properties:
