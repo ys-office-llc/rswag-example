@@ -37,19 +37,19 @@ RSpec.configure do |config|
               items: { type: 'string' }
             }
           },
+          todo: {
+            type: :object,
+            properties: {
+              name: { type: :string },
+              done: { type: :boolean }
+            },
+            required: %w[name done]
+          },
           todos: {
             type: 'array',
             items: {
               '$ref' => '#/components/schemas/todo'
             }
-          },
-          todo: {
-            type: :object,
-            properties: {
-              namea: { type: :string },
-              done: { type: :boolean }
-            },
-            required: %w[name done]
           }
         }
       },
