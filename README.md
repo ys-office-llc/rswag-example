@@ -86,10 +86,10 @@ curl -X DELETE -H "Content-Type: application/json" http://localhost:13000/api/v1
 bundle exec rspec spec/requests/api/v1/todos_spec.rb 
 ```
 ```text
-...
+.........
 
-Finished in 0.03788 seconds (files took 0.59304 seconds to load)
-3 examples, 0 failures
+Finished in 0.11434 seconds (files took 0.58668 seconds to load)
+9 examples, 0 failures
 ```
 
 ## Swagger 仕様自動作成
