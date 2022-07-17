@@ -16,48 +16,41 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'v1/swagger.yaml' => {
-      openapi: '3.0.1',
+      swagger: '2.0',
       info: {
-        title: 'API V1',
+        title: 'Todo API V1',
         version: 'v1'
       },
       paths: {},
-      components: {
-        schemas: {
-          errors_object: {
-            type: 'object',
-            properties: {
-              errors: { '$ref' => '#/components/schemas/errors_map' }
-            }
-          },
-          errors_map: {
-            type: 'object',
-            additionalProperties: {
-              type: 'array',
-              items: { type: 'string' }
-            }
-          },
-          todo: {
-            type: :object,
-            properties: {
-              name: { type: :string },
-              done: { type: :boolean }
-            },
-            required: %w[name done]
-          },
-          todos: {
+      definitions: {
+        errors_object: {
+          type: 'object',
+          properties: {
+            errors: { '$ref' => '#/definitions/errors_map' }
+          }
+        },
+        errors_map: {
+          type: 'object',
+          additionalProperties: {
             type: 'array',
-            items: {
-              '$ref' => '#/components/schemas/todo'
-            }
+            items: { type: 'string' }
+          }
+        },
+        todo: {
+          type: :object,
+          properties: {
+            name: { type: :string },
+            done: { type: :boolean }
+          },
+          required: %w[name done]
+        },
+        todos: {
+          type: 'array',
+          items: {
+            '$ref' => '#/definitions/todo'
           }
         }
-      },
-      servers: [
-        {
-          url: 'http://localhost:3000'
-        }
-      ]
+      }
     }
   }
 
