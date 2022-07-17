@@ -16,48 +16,150 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'v1/swagger.yaml' => {
-      openapi: '3.0.1',
+      swagger: '2.0',
       info: {
-        title: 'API V1',
+        title: 'Todo API V1',
         version: 'v1'
       },
-      paths: {},
-      components: {
-        schemas: {
-          errors_object: {
-            type: 'object',
-            properties: {
-              errors: { '$ref' => '#/components/schemas/errors_map' }
+      # Viron からの API リクエスト MIME タイプ
+      consumes: ['application/json'],
+      produces: ['application/json'],
+      paths: {
+        # 必須API - グローバルメニューの取得
+        '/viron': {
+          get: {
+            summary: 'エンドポイント全体情報取得',
+            operationId: 'viron#index',
+            responses: {
+              '200': {
+                description: :success,
+                schema: {
+                  '$ref' => '#/definitions/Viron'
+                }
+              }
             }
-          },
-          errors_map: {
-            type: 'object',
-            additionalProperties: {
-              type: 'array',
-              items: { type: 'string' }
+          }
+        },
+        #  必須 API - 認証方式の取得
+        '/viron_authtype': {
+          get: {
+            summary: '認証方式一覧',
+            operationId: 'viron_authtype#index',
+            responses: {
+              '200': {
+                description: :success,
+                schema: {
+                  '$ref': '#/definitions/VironAuthtype'
+                }
+              }
             }
-          },
-          todo: {
-            type: :object,
-            properties: {
-              name: { type: :string },
-              done: { type: :boolean }
-            },
-            required: %w[name done]
-          },
-          todos: {
-            type: 'array',
-            items: {
-              '$ref' => '#/components/schemas/todo'
+          }
+        },
+        # 必須API - swagger 取得（API 定義）
+        '/swagger.json': {
+          get: {
+            summary: 'swagger.json 取得',
+            operationId: 'swagger#index',
+            responses: {
+              '200': {
+                description: :success,
+                schema: {
+                  type: 'object'
+                }
+              },
+              '500': {
+                description: 'Internal Server Error'
+              }
             }
           }
         }
       },
-      servers: [
-        {
-          url: 'http://localhost:3000'
+      definitions: {
+        Viron: {
+          required: [
+            'name',
+            'color',
+            'thumbnail',
+            'tags',
+            'pages'
+          ],
+          additionalProperties: false,
+          properties: {
+            name: {
+              type: 'string'
+            },
+            color: {
+              type: 'string'
+            },
+            thumbnail: {
+              type: 'string'
+            },
+            tags: {
+              type: 'string'
+            },
+            pages: {
+              type: 'string'
+            }
+          }
+        },
+        # 認証方法の取得で使ってる定義
+        VironAuthtype: {
+          type: 'array',
+          items: {
+            '$ref' => '#/definitions/AuthType'
+          }
+        },
+        AuthType: {
+          required: [
+            'type',
+            'url',
+            'method',
+            'provider'
+          ],
+          additionalProperties: false,
+          properties: {
+            type: {
+              type: 'string'
+            },
+            url: {
+              type: 'string'
+            },
+            method: {
+              type: 'string'
+            },
+            provider: {
+              type: 'string'
+            }
+          }
+        },
+        errors_object: {
+          type: 'object',
+          properties: {
+            errors: { '$ref' => '#/definitions/errors_map' }
+          }
+        },
+        errors_map: {
+          type: 'object',
+          additionalProperties: {
+            type: 'array',
+            items: { type: 'string' }
+          }
+        },
+        todo: {
+          type: :object,
+          properties: {
+            name: { type: :string },
+            done: { type: :boolean }
+          },
+          required: %w[name done]
+        },
+        todos: {
+          type: 'array',
+          items: {
+            '$ref' => '#/definitions/todo'
+          }
         }
-      ]
+      }
     }
   }
 
