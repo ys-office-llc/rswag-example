@@ -16,11 +16,8 @@ end
 ```ruby
 bundle exec rails g rswag:api:install
 bundle exec rails g rswag:ui:install
-
 bundle exec rails generate rspec:install
-
 RAILS_ENV=test bundle exec rails g rswag:specs:install
-RAILS_ENV=test rake rswag:specs:swaggerize
 ```
 キャプチャ（いただきもの）
 ![68747470733a2f2f71696974612d696d6167652d73746f72652e73332e61702d6e6f727468656173742d312e616d617a6f6e6177732e636f6d2f302f3234373538342f34663464666631332d386235302d656438632d623738352d3261656466386261386335632e706e67](https://user-images.githubusercontent.com/31363256/178884672-3b0598ad-100b-4faa-9082-16ee7a197cda.png)
@@ -98,6 +95,7 @@ RAILS_ENV=test rake rswag:specs:swaggerize
 ```
 
 # 参考資料
+- [rswag](https://github.com/rswag/rswag)
 - [OpenAPIを活用したスキーマの自動生成や型安全な開発について紹介](https://zenn.dev/media_engine/articles/openapi-based-scheme-driven-development)
 - [Rails APIのエラーレスポンスを定義する](https://tech.pepabo.com/2021/03/15/rails-api-error-response/)
 - [【Rails】APIモードで使えるHTTPステータスコードのシンボルまとめ](https://qiita.com/terufumi1122/items/997e24dde87f807e3944)
