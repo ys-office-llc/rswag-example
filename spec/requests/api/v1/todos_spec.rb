@@ -5,7 +5,7 @@ RSpec.describe 'Todos API', type: :request do
     post 'Creates a todo' do
       tags 'Todos'
       consumes 'application/json'
-      parameter name: :todo, in: :body, schema: { '$ref' => '#/definitions/todo' }
+      parameter name: :todo, in: :body, schema: { '$ref' => '#/definitions/Todo' }
 
       response '201', :success do
         let(:todo) { { name: 'Todo', done: false } }
@@ -21,7 +21,7 @@ RSpec.describe 'Todos API', type: :request do
     get 'Retrieves a todo list' do
       tags 'Todos'
       response 200, :success do
-        schema '$ref' => '#/definitions/todos'
+        schema '$ref' => '#/definitions/Todos'
         run_test!
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe 'Todos API', type: :request do
       parameter name: :id, in: :path, type: :integer
 
       response '200', :success do
-        schema '$ref' => '#/definitions/todo'
+        schema '$ref' => '#/definitions/Todo'
         let(:id) { Todo.create(name: 'Todo', done: false).id }
         run_test!
       end
@@ -50,7 +50,7 @@ RSpec.describe 'Todos API', type: :request do
       consumes 'application/json'
       produces 'application/json'
       parameter name: :id, in: :path, type: :integer
-      parameter name: :todo, in: :body, schema: { '$ref' => '#/definitions/todo' }
+      parameter name: :todo, in: :body, schema: { '$ref' => '#/definitions/Todo' }
 
       response '200', :success do
         let!(:id) { Todo.create(name: 'Todo', done: false).id }

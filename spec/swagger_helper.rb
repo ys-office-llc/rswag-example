@@ -132,20 +132,20 @@ RSpec.configure do |config|
             }
           }
         },
-        errors_object: {
+        ErrorsObject: {
           type: 'object',
           properties: {
-            errors: { '$ref' => '#/definitions/errors_map' }
+            errors: { '$ref' => '#/definitions/ErrorsMap' }
           }
         },
-        errors_map: {
+        ErrorsMap: {
           type: 'object',
           additionalProperties: {
             type: 'array',
             items: { type: 'string' }
           }
         },
-        todo: {
+        Todo: {
           type: :object,
           properties: {
             name: { type: :string },
@@ -153,10 +153,10 @@ RSpec.configure do |config|
           },
           required: %w[name done]
         },
-        todos: {
+        Todos: {
           type: 'array',
           items: {
-            '$ref' => '#/definitions/todo'
+            '$ref' => '#/definitions/Todo'
           }
         }
       }
