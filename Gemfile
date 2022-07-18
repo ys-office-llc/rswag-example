@@ -77,3 +77,5 @@ end
 gem "prettier"
 gem 'rswag-api'
 gem 'rswag-ui'
+# https://qiita.com/arakawa_moriyuki/items/da1f07b6f47522832337#cors%E8%A8%AD%E5%AE%9A
+gem 'rack-cors'
