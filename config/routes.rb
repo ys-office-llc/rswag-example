@@ -6,4 +6,8 @@ Rails.application.routes.draw do
       resources :todos
     end
   end
+
+  get '/swagger', to: 'swagger#index'
+  get '/viron_authtype', to: 'viron#viron_authtype'
+  get '/viron', to: 'viron#viron'
 end
